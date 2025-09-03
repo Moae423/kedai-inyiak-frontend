@@ -14,9 +14,7 @@ const useLogin = () => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       await login(data.email, data.password);
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }

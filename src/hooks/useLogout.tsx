@@ -11,13 +11,15 @@ const useLogout = () => {
       setLoading(true);
       deleteCookie("token");
       await ApiClient.post("/auth/logout");
-      router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     } catch (error) {
       console.log(error);
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 500);
+      }, 1000);
     }
   };
   return { logout, loading };

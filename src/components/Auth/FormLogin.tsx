@@ -21,7 +21,7 @@ const FormLogin = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-1/4 h-full border-3 border-gray-700 p-12  rounded-lg shadow-lg"
+      className="w-full md:w-1/4 h-full border-3 border-gray-700 p-12  rounded-lg shadow-lg"
     >
       <h1
         className={`${gambarino.className} text-5xl font-black my-3 text-center `}

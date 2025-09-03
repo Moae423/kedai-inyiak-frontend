@@ -17,8 +17,10 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import useLogout from "@/hooks/useLogout";
+import { useUser } from "@/hooks/useUser";
 
 export function SidebarProfile() {
+  const { user } = useUser();
   const { logout, loading } = useLogout();
   return (
     <SidebarFooter>
@@ -35,8 +37,8 @@ export function SidebarProfile() {
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Ekal</span>
-                  <span className="truncate text-xs">dummyEmail@yahoo.com</span>
+                  <span className="truncate font-semibold">{user?.name}</span>
+                  <span className="truncate text-xs">{user?.email}</span>
                 </div>
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -46,10 +48,8 @@ export function SidebarProfile() {
             >
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">User Name</p>
-                  <p className="text-xs text-muted-foreground">
-                    email@example.com
-                  </p>
+                  <p className="text-sm font-medium">{user?.name}</p>
+                  <p className="text-xs text-muted-foreground">{user?.email}</p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
@@ -60,8 +60,9 @@ export function SidebarProfile() {
                   variant={"destructive"}
                   onClick={logout}
                   disabled={loading}
+                  className="w-full"
                 >
-                  Sign Out
+                  {loading ? "Signing Out...  " : "Sign Out"}
                 </Button>
               </DropdownMenuItem>
             </DropdownMenuContent>

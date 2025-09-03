@@ -16,10 +16,7 @@ import { SidebarProfile } from "../sidebarProfile";
 // Menu items.
 const items = [
   { title: "Home", url: "/dashboard", icon: Home },
-  { title: "Inbox", url: "#", icon: Inbox },
-  { title: "Calendar", url: "#", icon: Calendar },
-  { title: "Search", url: "#", icon: Search },
-  { title: "Settings", url: "#", icon: Settings },
+  { title: "Data Barang", url: "#", icon: Inbox },
 ];
 
 export function AppSidebar() {
@@ -27,7 +24,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
