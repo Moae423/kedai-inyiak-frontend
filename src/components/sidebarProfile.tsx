@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SidebarFooter,
   SidebarMenu,
@@ -13,8 +15,11 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "./ui/button";
+import useLogout from "@/hooks/useLogout";
 
 export function SidebarProfile() {
+  const { logout, loading } = useLogout();
   return (
     <SidebarFooter>
       <SidebarMenu>
@@ -50,7 +55,15 @@ export function SidebarProfile() {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Sign out</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Button
+                  variant={"destructive"}
+                  onClick={logout}
+                  disabled={loading}
+                >
+                  Sign Out
+                </Button>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>

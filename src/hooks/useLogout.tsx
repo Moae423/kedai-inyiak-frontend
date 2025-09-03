@@ -1,0 +1,26 @@
+import { ApiClient } from "@/lib/api";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import React from "react";
+
+const useLogout = () => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const logout = async () => {
+    try {
+      setLoading(true);
+      deleteCookie("token");
+      await ApiClient.post("/auth/logout");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
+  };
+  return { logout, loading };
+};
+
+export default useLogout;

@@ -1,10 +1,26 @@
 import { LoginServices } from "@/features/auth/services";
+import { LoginFormData } from "@/lib/validation/schema";
+import { AxiosError } from "axios";
 import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const router = useRouter();
+
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      await login(data.email, data.password);
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
@@ -14,16 +30,23 @@ const useLogin = () => {
         setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 30 });
       }
       return data;
-    } catch (error: any | unknown) {
-      console.log(error);
-      setError(error.response?.data?.message || "Login gagal");
-      throw error;
+    } catch (err: unknown) {
+      if (err && typeof err === "object" && "response" in err) {
+        const axiosErr = err as AxiosError<{ message?: string }>;
+        setError(axiosErr.response?.data?.message || "Login gagal");
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Login gagal");
+      }
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   };
   return {
-    login,
+    onSubmit,
     loading,
     error,
   };
