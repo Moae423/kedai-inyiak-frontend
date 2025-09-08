@@ -4,21 +4,13 @@ import { AxiosError } from "axios";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
-
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      await login(data.email, data.password);
-      router.push("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
@@ -40,9 +32,22 @@ const useLogin = () => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 800);
     }
   };
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      await login(data.email, data.password);
+      setTimeout(() => {
+        toast.success("Login Berhasil");
+        router.push("/dashboard");
+      }, 800);
+    } catch (error) {
+      toast.error("Gagal Login");
+      console.log(error);
+    }
+  };
+
   return {
     onSubmit,
     loading,

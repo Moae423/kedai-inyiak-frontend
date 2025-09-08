@@ -1,3 +1,4 @@
+import { LogoutServices } from "@/features/auth/services";
 import { ApiClient } from "@/lib/api";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
@@ -10,7 +11,7 @@ const useLogout = () => {
     try {
       setLoading(true);
       deleteCookie("token");
-      await ApiClient.post("/auth/logout");
+      await LogoutServices();
       setTimeout(() => {
         router.push("/");
       }, 1000);

@@ -18,6 +18,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import useLogout from "@/hooks/useLogout";
 import { useUser } from "@/hooks/useUser";
+import { toast } from "sonner";
 
 export function SidebarProfile() {
   const { user } = useUser();
@@ -58,7 +59,13 @@ export function SidebarProfile() {
               <DropdownMenuItem>
                 <Button
                   variant={"destructive"}
-                  onClick={logout}
+                  onClick={() =>
+                    toast.promise(logout(), {
+                      loading: "Signing Out...",
+                      success: "Logout Berhasil",
+                      error: "Gagal Logout",
+                    })
+                  }
                   disabled={loading}
                   className="w-full"
                 >

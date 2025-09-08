@@ -38,11 +38,11 @@ const FormLogin = () => {
       <div className="flex flex-col gap-3 my-3">
         <div className="flex items-center justify-between">
           <label htmlFor="password">Password</label>
-          <p>
-            Forget Your{" "}
+          <p className="text-sm">
+            Forget Your
             <Link
               href={""}
-              className="text-blue-600 hover:underline  underline-offset-8"
+              className="text-blue-600 hover:underline mx-1  underline-offset-8"
             >
               Password?
             </Link>
@@ -56,6 +56,14 @@ const FormLogin = () => {
         {errors.password && (
           <p className="text-red-500">{errors.password.message}</p>
         )}
+      </div>
+      <div className="flex items-center justify-center">
+        <Link
+          href={"/register"}
+          className="text-sm hover:underline underline-offset-8 text-blue-600"
+        >
+          Don&apos;t Have Account ?
+        </Link>
       </div>
       {error && <p className="text-red-500 text-center">{error}</p>}
       <div className="flex items-center justify-center my-3">
