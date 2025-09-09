@@ -16,7 +16,7 @@ import { SidebarProfile } from "../sidebarProfile";
 // Menu items.
 const items = [
   { title: "Home", url: "/dashboard", icon: Home },
-  { title: "Data Barang", url: "#", icon: Inbox },
+  { title: "Data Barang", url: "/dashboard/barang", icon: Inbox },
 ];
 
 export function AppSidebar() {

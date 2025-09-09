@@ -54,8 +54,6 @@ export function SidebarProfile() {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>
                 <Button
                   variant={"destructive"}

@@ -1,5 +1,4 @@
 import { LogoutServices } from "@/features/auth/services";
-import { ApiClient } from "@/lib/api";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import React from "react";

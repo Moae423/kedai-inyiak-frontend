@@ -11,7 +11,7 @@ export const middleware = (request: NextRequest) => {
   }
   // 🔹 Kalau udah login dan coba masuk /login atau /register → tendang ke /dashboard
   if (token && (pathname.startsWith("/") || pathname.startsWith("/register"))) {
-    if (pathname !== "/dashboard") {
+    if (!pathname.startsWith("/dashboard")) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
   }

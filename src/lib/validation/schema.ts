@@ -1,7 +1,9 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email format"),
+  email: z
+    .email({ message: "Invalid email format" })
+    .min(1, "Email is required"),
   password: z
     .string()
     .min(1, "Password is required")
@@ -24,5 +26,18 @@ export const authResponseSchema = z.object({
     })
     .optional(),
 });
+
+export const registerSchema = z.object({
+  email: z
+    .email({ message: "Invalid email format" })
+    .min(1, "Email is required"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(6, "Password must be at least 6 characters"),
+  name: z.string().min(1, "Name is required"),
+});
+
+export type RegisterFormData = z.infer<typeof registerSchema>;
 
 export type AuthResponse = z.infer<typeof authResponseSchema>;
