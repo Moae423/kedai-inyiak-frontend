@@ -19,3 +19,8 @@ export const LogoutServices = async () => {
   const res = await ApiClient.post("/auth/logout");
   return res.data;
 };
+
+export const TotalUserServices = async () => {
+  const res = await ApiClient.get("/auth/user-total");
+  return res.data;
+};
