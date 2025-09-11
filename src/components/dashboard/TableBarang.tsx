@@ -20,17 +20,17 @@ const TableBarang = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>No.</TableHead>
-            <TableHead>Nama Barang</TableHead>
-            <TableHead>Harga Barang</TableHead>
-            <TableHead>Stock</TableHead>
-            <TableHead>Tanggal Masuk</TableHead>
+            <TableHead className="text-center">No.</TableHead>
+            <TableHead className="text-center">Nama Barang</TableHead>
+            <TableHead className="text-center">Harga Barang</TableHead>
+            <TableHead className="text-center">Stock</TableHead>
+            <TableHead className="text-center">Tanggal Masuk</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
           {data.slice(0, 5).map((item, index) => (
-            <TableRow key={item.id}>
+            <TableRow key={item.id} className="text-center">
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.harga}</TableCell>

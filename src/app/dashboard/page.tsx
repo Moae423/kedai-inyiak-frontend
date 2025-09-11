@@ -1,8 +1,11 @@
+"use client";
 import TableBarang from "@/components/dashboard/TableBarang";
+import useTotalBarang from "@/hooks/Barang/useTotalBarang";
 import React from "react";
 import { GoPackage } from "react-icons/go";
 
-const page = () => {
+const Page = () => {
+  const { loading, data, error } = useTotalBarang();
   return (
     <div className=" flex flex-col gap-5 p-12 ">
       <div className="flex items-center justify-center gap-5">
@@ -10,7 +13,9 @@ const page = () => {
           <div className="flex items-center gap-3">
             <GoPackage className="w-12 h-12" />
             <div className="flex flex-col">
-              <h1 className="text-[24px] leading-[32px] font-bold ">12,434</h1>
+              <h1 className="text-[24px] leading-[32px] font-bold ">
+                {loading ? "Loading..." : error ? "Error" : data}
+              </h1>
               <p className="text-[18px] leadieng-[24px] text-gray-500">
                 Total Jumlah Barang
               </p>
@@ -52,4 +57,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
