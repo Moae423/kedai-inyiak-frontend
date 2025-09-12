@@ -24,14 +24,14 @@ const Page = () => {
     <div className=" flex flex-col gap-5 p-12 ">
       <div className="flex flex-col md:flex-row  items-center justify-center gap-5">
         <CardTotal
-          icon={<LuPackage size={30} className="w-12 h-12" />}
+          icon={<LuPackage size={30} className="w-12 h-12 text-[#FFA500]" />}
           title="Total Jumlah Barang"
           loading={LoadingBarang}
           data={DataBarang}
           error={ErrorBarang}
         />
         <CardTotal
-          icon={<FaCircleUser size={30} className="w-12 h-12" />}
+          icon={<FaCircleUser size={30} className="w-12 h-12 text-gray-400" />}
           loading={LoadingUser}
           data={DataUser}
           error={ErrorUser}
@@ -40,7 +40,7 @@ const Page = () => {
         <CardTotal
           title="Total Jumlah Value"
           data={45}
-          icon={<GiProfit className="w-12 h-12" />}
+          icon={<GiProfit className="w-12 h-12 text-green-500" />}
         />
       </div>
       <div className="flex items-center justify-center">
