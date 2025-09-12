@@ -39,7 +39,7 @@ const Page = () => {
         />
         <CardTotal
           title="Total Jumlah Value"
-          data={45}
+          data={4500000}
           icon={<GiProfit className="w-12 h-12 text-green-500" />}
         />
       </div>
