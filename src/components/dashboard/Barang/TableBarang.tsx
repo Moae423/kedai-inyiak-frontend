@@ -3,7 +3,7 @@ import useGetAllBarang from "@/hooks/Barang/useGetAllBarang";
 import { Edit, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { MdOutlineAddBox } from "react-icons/md";
+import ModalDialogForm from "./ModalDialogForm";
 
 const TableBarang = () => {
   const {
@@ -66,12 +66,6 @@ const TableBarang = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div className="flex gap-2">
-                    <Link
-                      href="/"
-                      className="text-green-600 hover:text-green-900 p-1 rounded hover:bg-green-50 transition-colors"
-                    >
-                      <MdOutlineAddBox size={18} />
-                    </Link>
                     <Link
                       href="/"
                       className="text-blue-500 hover:text-blue-700 p-1 rounded hover:bg-blue-50 transition-colors"
