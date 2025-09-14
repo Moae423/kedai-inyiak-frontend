@@ -1,5 +1,5 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-
+"use client";
+import { Home, Inbox } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,14 +12,20 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import { SidebarProfile } from "../sidebarProfile";
+import React from "react";
 
 // Menu items.
 const items = [
   { title: "Home", url: "/dashboard", icon: Home },
-  { title: "Data Barang", url: "/dashboard/barang", icon: Inbox },
+  {
+    title: "Data Barang",
+    url: "/dashboard/barang",
+    icon: Inbox,
+  },
 ];
 
 export function AppSidebar() {
+  const [open, setOpen] = React.useState(true);
   return (
     <Sidebar>
       <SidebarContent>
@@ -29,7 +35,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild onClick={() => setOpen(!open)}>
                     <a href={item.url}>
                       <item.icon />
                       <p>{item.title}</p>

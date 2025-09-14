@@ -15,7 +15,11 @@ const CardTotal = ({ loading, data, error, title, icon }: CardTotalProps) => {
         {icon}
         <div className="flex flex-col">
           <h1 className="text-[24px] leading-[32px] font-bold ">
-            {loading ? "Loading..." : error ? error : data}
+            {loading
+              ? "Loading..."
+              : error
+              ? error
+              : data?.toLocaleString("id-ID")}
           </h1>
           <p className="text-[18px] leadieng-[24px] text-gray-500">{title}</p>
         </div>

@@ -1,7 +1,15 @@
 import { ApiClient } from "@/lib/api";
+import { BarangFormData } from "@/lib/validation/barang/schema";
 
 export const GetAllBarangServices = async () => {
   const res = await ApiClient.get("/kedai-inyiak");
+  return res.data;
+};
+
+export const CreateBarangServices = async (
+  dataBarang: BarangFormData
+): Promise<BarangFormData> => {
+  const res = await ApiClient.post<BarangFormData>("/kedai-inyiak", dataBarang);
   return res.data;
 };
 
