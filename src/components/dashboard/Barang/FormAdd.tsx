@@ -2,15 +2,19 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import useAddBarang from "@/hooks/Barang/useAddBarang";
 import {
   BarangFormData,
   barangFormSchema,
 } from "@/lib/validation/barang/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-const FormAdd = () => {
-  const { loading, error, onSubmit } = useAddBarang();
+
+interface FormAddProps {
+  loadingBarang: boolean;
+  errorBarang: string | null;
+  onSubmit: (data: BarangFormData) => void;
+}
+const FormAdd = ({ loadingBarang, errorBarang, onSubmit }: FormAddProps) => {
   const {
     handleSubmit,
     register,
@@ -79,9 +83,9 @@ const FormAdd = () => {
           <p className="text-red-500">{errors.tglMasuk?.message}</p>
         )}
       </div>
-      {error && <p className="text-red-500">{error}</p>}
+      {errorBarang && <p className="text-red-500">{errorBarang}</p>}
 
-      <Button type="submit">{loading ? "adding...." : "Submit"}</Button>
+      <Button type="submit">{loadingBarang ? "adding...." : "Submit"}</Button>
     </form>
   );
 };

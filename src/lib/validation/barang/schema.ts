@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const barangFormSchema = z.object({
+  id: z.uuid().optional(),
   name: z
     .string()
     .min(1, { message: "Name is required" })
@@ -10,6 +11,7 @@ export const barangFormSchema = z.object({
   tglMasuk: z.string().min(1, { message: "Tanggal Masuk is required" }),
 });
 export const barangApiSchema = z.object({
+  id: z.uuid().optional(),
   name: z.string().min(1).max(20),
   harga: z.number().min(1),
   stok: z.number().min(1),

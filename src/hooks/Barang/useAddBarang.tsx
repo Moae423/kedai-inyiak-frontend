@@ -10,6 +10,7 @@ const useAddBarang = () => {
 
   const addBarang = async (data: BarangFormData) => {
     try {
+      console.log(`testing`);
       setLoading(true);
       setError(null);
       const response = await CreateBarangServices(data);
@@ -33,14 +34,8 @@ const useAddBarang = () => {
       setLoading(false);
     }
   };
-  const onSubmit = async (data: BarangFormData): Promise<void> => {
-    try {
-      await addBarang(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  return { loading, error, onSubmit };
+
+  return { loading, error, addBarang };
 };
 
 export default useAddBarang;

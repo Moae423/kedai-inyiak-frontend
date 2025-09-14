@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import useGetAllBarang from "@/hooks/Barang/useGetAllBarang";
 const TableBarang = () => {
-  const { data, loading, error } = useGetAllBarang();
+  const { barangList, loading, error } = useGetAllBarang();
   if (loading) {
     <p>Loading...</p>;
   }
@@ -29,7 +29,7 @@ const TableBarang = () => {
         </TableHeader>
 
         <TableBody>
-          {data.slice(0, 5).map((item, index) => (
+          {barangList.slice(0, 5).map((item, index) => (
             <TableRow key={item.id} className="text-center">
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>{item.name}</TableCell>

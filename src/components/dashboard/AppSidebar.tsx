@@ -21,7 +21,6 @@ const items = [
     title: "Data Barang",
     url: "/dashboard/barang",
     icon: Inbox,
-    children: [{ title: "Tambah Barang", url: "/dashboard/barang/add" }],
   },
 ];
 
@@ -42,19 +41,6 @@ export function AppSidebar() {
                       <p>{item.title}</p>
                     </a>
                   </SidebarMenuButton>
-                  {item.children && open && (
-                    <div className="ml-6 mt-2 flex flex-col gap-1">
-                      {item.children.map((child) => (
-                        <a
-                          key={child.title}
-                          href={child.url}
-                          className="text-sm text-gray-600 hover:text-gray-900"
-                        >
-                          {child.title}
-                        </a>
-                      ))}
-                    </div>
-                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
