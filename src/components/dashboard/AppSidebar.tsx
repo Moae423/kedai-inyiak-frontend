@@ -21,7 +21,7 @@ const items = [
     title: "Data Barang",
     url: "/dashboard/barang",
     icon: Inbox,
-    children: [{ title: "Tambah Barang", url: "/dashboard/barang/tambah" }],
+    children: [{ title: "Tambah Barang", url: "/dashboard/barang/add" }],
   },
 ];
 
