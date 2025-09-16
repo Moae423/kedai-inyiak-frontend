@@ -6,10 +6,13 @@ export const GetAllBarangServices = async () => {
   return res.data;
 };
 
-export const CreateBarangServices = async (
-  dataBarang: BarangFormData
-): Promise<BarangFormData> => {
-  const res = await ApiClient.post<BarangFormData>("/kedai-inyiak", dataBarang);
+export const deleteBarangServices = async (id: string) => {
+  const res = await ApiClient.delete(`/kedai-inyiak/${id}`);
+  return res;
+};
+
+export const CreateBarangServices = async (dataBarang: BarangFormData) => {
+  const res = await ApiClient.post("/kedai-inyiak", dataBarang);
   return res.data;
 };
 

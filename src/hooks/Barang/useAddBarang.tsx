@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 import React from "react";
 import { toast } from "sonner";
 
-const useAddBarang = () => {
+const useAddBarang = (onSuccess?: (newBarang: BarangFormData) => void) => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -14,8 +14,12 @@ const useAddBarang = () => {
       setLoading(true);
       setError(null);
       const response = await CreateBarangServices(data);
+      const newBarang = response.data;
+      if (onSuccess) {
+        onSuccess(newBarang);
+      }
       toast.success("Barang berhasil ditambahkan");
-      return response;
+      return { success: true, data: response }; // Return success indicator
     } catch (err) {
       setError(`Failed to add barang. Please try again. ${err}`);
 
