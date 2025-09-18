@@ -2,8 +2,10 @@ import { deleteBarangServices } from "@/features/barang.services";
 import { AxiosError } from "axios";
 import React from "react";
 import { toast } from "sonner";
+import useGetAllBarang from "./useGetAllBarang";
 
 const useDeleteBarang = (onDeleteSuccess?: (id: string) => void) => {
+  const { refetch, setBarangList } = useGetAllBarang();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const deleteBarang = async (id: string) => {
@@ -30,7 +32,18 @@ const useDeleteBarang = (onDeleteSuccess?: (id: string) => void) => {
       return () => clearTimeout(timeLoading);
     }
   };
-  return { loading, error, deleteBarang };
+  const handleDeleteBarang = async (e: React.FormEvent, id: string) => {
+    try {
+      e.preventDefault();
+      setBarangList((prev) => prev.filter((item) => item.id !== id));
+      await deleteBarangServices(id);
+      // refetch();
+    } catch (error) {
+      console.log(error);
+      refetch();
+    }
+  };
+  return { loading, error, deleteBarang, handleDeleteBarang };
 };
 
 export default useDeleteBarang;

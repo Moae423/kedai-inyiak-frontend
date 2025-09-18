@@ -58,7 +58,7 @@ const AddData = () => {
               <Label htmlFor="name">Nama Barang</Label>
               <Input
                 id="name"
-                defaultValue={"Iphone"}
+                placeholder={"Masukkan Nama Barang"}
                 {...register("name", { required: "Nama barang wajib diisi" })}
               />
               {errors.name && (
@@ -72,6 +72,7 @@ const AddData = () => {
               <Input
                 id="harga"
                 type="number"
+                placeholder="Masukkan Harga Barang"
                 {...register("harga", {
                   required: "Harga barang wajib diisi",
                   min: { value: 0, message: "Harga tidak boleh negatif" },
@@ -88,6 +89,7 @@ const AddData = () => {
               <Input
                 id="stok"
                 type="number"
+                placeholder="Masukkan Stock Barang"
                 {...register("stok", {
                   required: "Stock wajib diisi",
                   min: { value: 0, message: "Stock tidak boleh negatif" },
@@ -115,12 +117,12 @@ const AddData = () => {
               )}
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="my-3">
             <DialogDescription>
               {error && <span className="text-sm text-red-500">{error}</span>}
             </DialogDescription>
             <DialogClose asChild>
-              <Button variant="outline" type="button">
+              <Button variant={"destructive"} type="button">
                 Cancel
               </Button>
             </DialogClose>

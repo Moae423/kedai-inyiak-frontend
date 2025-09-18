@@ -5,7 +5,6 @@ export const GetAllBarangServices = async () => {
   const res = await ApiClient.get("/kedai-inyiak");
   return res.data;
 };
-
 export const deleteBarangServices = async (id: string) => {
   const res = await ApiClient.delete(`/kedai-inyiak/${id}`);
   return res;

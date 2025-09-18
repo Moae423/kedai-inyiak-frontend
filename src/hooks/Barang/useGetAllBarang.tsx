@@ -9,12 +9,12 @@ const useGetAllBarang = () => {
   const [barangList, setBarangList] = React.useState<BarangListData[]>([]);
 
   // pagination
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const itemPerPage = 10;
-  const startIndex = (currentPage - 1) * itemPerPage;
-  const endIndex = startIndex + itemPerPage;
-  const totalPages = Math.ceil(barangList.length / itemPerPage);
-  const currentData = barangList.slice(startIndex, endIndex);
+  // const [currentPage, setCurrentPage] = React.useState(1);
+  // const itemPerPage = 10;
+  // const startIndex = (currentPage - 1) * itemPerPage;
+  // const endIndex = startIndex + itemPerPage;
+  // const totalPages = Math.ceil(barangList.length / itemPerPage);
+  // const currentData = barangList.slice(startIndex, endIndex);
 
   const getAllBarang = async () => {
     try {
@@ -22,7 +22,7 @@ const useGetAllBarang = () => {
       setError(null);
       const res = await GetAllBarangServices();
       setBarangList(res.data);
-      setCurrentPage(1); // reset page biar langsung lihat data terbaru
+      // setCurrentPage(1); // reset page biar langsung lihat data terbaru
     } catch (err) {
       if (err && typeof err === "object" && "response" in err) {
         const axiosErr = err as AxiosError<{ message?: string }>;
@@ -48,10 +48,10 @@ const useGetAllBarang = () => {
     setBarangList,
     loading,
     error,
-    currentData,
-    currentPage,
-    totalPages,
-    onPageChange: setCurrentPage,
+    // currentData,
+    // currentPage,
+    // totalPages,
+    // onPageChange: setCurrentPage,
     refetch: getAllBarang,
   };
 };
