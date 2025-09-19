@@ -69,7 +69,7 @@ const ViewData = () => {
               <TableCell>{item.tglMasuk.split("T")[0]}</TableCell>
 
               <TableCell>
-                <EditData />
+                <EditData barang={item} setBarangList={setBarangList} />
               </TableCell>
               <TableCell>
                 <Button

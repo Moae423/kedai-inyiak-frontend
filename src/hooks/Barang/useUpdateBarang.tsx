@@ -1,5 +1,8 @@
-import { ApiClient } from "@/lib/api";
-import { BarangUpdateData } from "@/lib/validation/barang/schema";
+import { updateBarangServices } from "@/features/barang.services";
+import {
+  BarangUpdateData,
+  BarangUpdateWithoutId,
+} from "@/lib/validation/barang/schema";
 import { AxiosError } from "axios";
 import React from "react";
 import { toast } from "sonner";
@@ -8,30 +11,37 @@ const useUpdateBarang = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  const updateBarang = async (id: string, data: BarangUpdateData) => {
+  const updateBarang = async (
+    id: string,
+    dataBarang: BarangUpdateWithoutId
+  ) => {
     try {
       setLoading(true);
       setError(null);
-      const res = await ApiClient.put(`/kedai-inyiak/${id}`, data);
       toast.success("Barang berhasil diupdate");
-      return res;
+      const res = await updateBarangServices(id, dataBarang);
+      return res.data;
     } catch (error) {
-      console.log(`Error : ${error}`);
+      console.log(error);
       if (error && typeof error === "object" && "response" in error) {
         const axiosErr = error as AxiosError<{ message?: string }>;
         setError(
-          axiosErr.response?.data?.message || "Gagal update  data barang"
+          axiosErr.response?.data?.message || "Gagal Mengedit data barang"
         );
       } else if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError("Gagal update   data barang");
+        setError("Gagal Mengedit data barang");
       }
     } finally {
       setLoading(false);
     }
   };
-  return { loading, error, updateBarang };
+  return {
+    updateBarang,
+    loading,
+    error,
+  };
 };
 
 export default useUpdateBarang;
